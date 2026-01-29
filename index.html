@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>決断診断（20分・無料）｜承継・M&Aの決断参謀</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ランディングページ -->
+    <section id="landing-page" class="section">
+        <div class="container">
+            <div class="hero">
+                <h1 class="headline">
+                    「息子に継がせるか、M&Aで売るか」<br>
+                    <span class="highlight">その迷い、20分で終わらせます。</span>
+                </h1>
+                <h2 class="subtitle">承継・M&Aの決断診断（無料）</h2>
+                <p class="description">
+                    年商5億円以上の社長が抱える<br>
+                    「正解のない孤独な決断」を、<br>
+                    想いと数字で整理し、<br>
+                    <strong>次の一歩を明確にします。</strong>
+                </p>
+            </div>
+
+            <div class="benefits">
+                <h3>この診断で分かること</h3>
+                <div class="benefit-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                            <h4>あなたの現在地</h4>
+                            <p>後継者の準備度と想いの強さから、最適な選択肢を明確化</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                            <h4>次の一手</h4>
+                            <p>今月中・3ヶ月以内・1年以内に取るべき具体的アクション</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                            <h4>注意すべきリスク</h4>
+                            <p>あなたの選択で見落としがちなリスクを事前に警告</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow">
+                <h3>診断の流れ（所要時間：20分）</h3>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-number">STEP 1</div>
+                        <div class="step-time">0-3分</div>
+                        <div class="step-title">ヒアリング</div>
+                        <p>7つの質問で現状を確認</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="step-number">STEP 2</div>
+                        <div class="step-time">3-10分</div>
+                        <div class="step-title">診断</div>
+                        <p>4象限マトリクスで分析</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="step-number">STEP 3</div>
+                        <div class="step-time">10-18分</div>
+                        <div class="step-title">結果解説</div>
+                        <p>診断レポート提示</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="step-number">STEP 4</div>
+                        <div class="step-time">18-20分</div>
+                        <div class="step-title">次のステップ</div>
+                        <p>個別相談のご案内</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <button class="cta-button" onclick="startDiagnosis()">
+                    今すぐ無料診断を始める<br>
+                    <span class="cta-sub">（所要時間：20分）</span>
+                </button>
+                <p class="cta-note">※診断後、無理な営業は一切ありません</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 診断フォーム -->
+    <section id="diagnosis-form" class="section hidden">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p class="progress-text">質問 <span id="current-question">1</span> / 7</p>
+
+            <form id="diagnostic-form">
+                <!-- 質問1 -->
+                <div class="question-card active" data-question="1">
+                    <h3 class="question-title">今、一番悩んでいることは？</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="継がせるか売るか決められない" required>
+                            <span>息子に継がせるか、M&Aか、決められない</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="後継者候補はいるが任せて良いか不安">
+                            <span>後継者候補はいるが、本当に任せていいか不安</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="M&Aを考えているが買い手が見つからない">
+                            <span>M&Aを考えているが、良い買い手が見つからない</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="事業承継の準備を何から始めれば良いか分からない">
+                            <span>事業承継の準備を何から始めればいいか分からない</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="その他">
+                            <span>その他</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-next" onclick="nextQuestion(1)">次へ</button>
+                    </div>
+                </div>
+
+                <!-- 質問2 -->
+                <div class="question-card" data-question="2">
+                    <h3 class="question-title">後継者候補はいますか？</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="息子娘いる・継ぐ意思あり" required>
+                            <span>息子/娘がいる（継ぐ意思：<strong>あり</strong>）</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="息子娘いる・継ぐ意思不明">
+                            <span>息子/娘がいる（継ぐ意思：<strong>不明</strong>）</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="息子娘いる・継ぐ意思なし">
+                            <span>息子/娘がいる（継ぐ意思：<strong>なし</strong>）</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="社内に候補者がいる">
+                            <span>社内に候補者がいる</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="いない・M&A検討中">
+                            <span>いない（M&A検討中）</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-back" onclick="prevQuestion(2)">戻る</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(2)">次へ</button>
+                    </div>
+                </div>
+
+                <!-- 質問3 -->
+                <div class="question-card" data-question="3">
+                    <h3 class="question-title">理想の引退時期は？</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="1年以内" required>
+                            <span>1年以内</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="3年以内">
+                            <span>3年以内</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="5年以内">
+                            <span>5年以内</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="10年以内">
+                            <span>10年以内</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-back" onclick="prevQuestion(3)">戻る</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(3)">次へ</button>
+                    </div>
+                </div>
+
+                <!-- 質問4 -->
+                <div class="question-card" data-question="4">
+                    <h3 class="question-title">会社を残す上で、一番大事にしたいことは？</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="従業員の雇用を守る" required>
+                            <span>従業員の雇用を守る</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="自分の想いを引き継いでほしい">
+                            <span>自分の想いを引き継いでほしい</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="高く売却して資産を残したい">
+                            <span>高く売却して資産を残したい</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="地域への貢献を続けたい">
+                            <span>地域への貢献を続けたい</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-back" onclick="prevQuestion(4)">戻る</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(4)">次へ</button>
+                    </div>
+                </div>
+
+                <!-- 質問5 -->
+                <div class="question-card" data-question="5">
+                    <h3 class="question-title">今、一番の不安は？</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="後継者が育っていない" required>
+                            <span>後継者が育っていない</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="会社の価値が分からない">
+                            <span>会社の価値が分からない</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="税金や相続の問題">
+                            <span>税金や相続の問題</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="M&Aの進め方が分からない">
+                            <span>M&Aの進め方が分からない</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-back" onclick="prevQuestion(5)">戻る</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(5)">次へ</button>
+                    </div>
+                </div>
+
+                <!-- 質問6 -->
+                <div class="question-card" data-question="6">
+                    <h3 class="question-title">これまでに誰かに相談しましたか？</h3>
+                    <div class="options">
+                        <label class="option-label checkbox-label">
+                            <input type="checkbox" name="q6" value="税理士">
+                            <span>税理士</span>
+                        </label>
+                        <label class="option-label checkbox-label">
+                            <input type="checkbox" name="q6" value="弁護士">
+                            <span>弁護士</span>
+                        </label>
+                        <label class="option-label checkbox-label">
+                            <input type="checkbox" name="q6" value="M&A仲介会社">
+                            <span>M&A仲介会社</span>
+                        </label>
+                        <label class="option-label checkbox-label">
+                            <input type="checkbox" name="q6" value="家族">
+                            <span>家族</span>
+                        </label>
+                        <label class="option-label checkbox-label">
+                            <input type="checkbox" name="q6" value="まだ誰にも相談していない">
+                            <span>まだ誰にも相談していない</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-back" onclick="prevQuestion(6)">戻る</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(6)">次へ</button>
+                    </div>
+                </div>
+
+                <!-- 質問7 -->
+                <div class="question-card" data-question="7">
+                    <h3 class="question-title">もし今日、決断できるなら、どうしたいですか？</h3>
+                    <div class="options">
+                        <textarea name="q7" class="text-input" rows="4" placeholder="自由にお書きください" required></textarea>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-back" onclick="prevQuestion(7)">戻る</button>
+                        <button type="button" class="btn-submit" onclick="submitDiagnosis()">診断結果を見る</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- 診断結果 -->
+    <section id="diagnosis-result" class="section hidden">
+        <div class="container">
+            <div class="result-header">
+                <h2>あなたの決断診断レポート</h2>
+                <p class="diagnosis-date">診断日：<span id="diagnosis-date"></span></p>
+            </div>
+
+            <div class="result-card">
+                <div class="result-matrix">
+                    <h3>あなたの現在地</h3>
+                    <div class="matrix-diagram" id="matrix-diagram">
+                        <!-- JavaScriptで生成 -->
+                    </div>
+                    <div class="result-summary">
+                        <div class="summary-item">
+                            <span class="label">診断結果：</span>
+                            <span class="value" id="result-quadrant"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">最適な選択肢：</span>
+                            <span class="value" id="result-choice"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">実現可能性：</span>
+                            <span class="value" id="result-feasibility"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-card">
+                <h3>次の一手（今からできること）</h3>
+                <div class="action-list" id="action-list">
+                    <!-- JavaScriptで生成 -->
+                </div>
+            </div>
+
+            <div class="result-card warning-card">
+                <h3>⚠️ 注意すべきリスク</h3>
+                <div class="risk-list" id="risk-list">
+                    <!-- JavaScriptで生成 -->
+                </div>
+            </div>
+
+            <div class="cta-card">
+                <h3>さらに深掘りしたい方へ</h3>
+                <p>個別相談（60分・初回無料）で、<br>想いと数字を「勝てる形」に整理します。</p>
+                <a href="https://timerex.net/s/yanoconsulting2022_1f3b/ae0058a7" target="_blank" class="cta-button-secondary">
+                    無料ヒアリングを予約する
+                </a>
+                <p class="cta-note">※診断レポートをPDFでダウンロードできます</p>
+                <button class="btn-download" onclick="downloadReport()">📥 診断レポートをダウンロード</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 管理者ログイン -->
+    <section id="admin-login" class="section hidden">
+        <div class="container">
+            <div class="login-card">
+                <h2>管理者ログイン</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>ユーザー名</label>
+                        <input type="text" id="admin-username" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>パスワード</label>
+                        <input type="password" id="admin-password" class="form-input" required>
+                    </div>
+                    <button type="submit" class="btn-login">ログイン</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 管理者ダッシュボード -->
+    <section id="admin-dashboard" class="section hidden">
+        <div class="container">
+            <div class="admin-header">
+                <h2>診断データ管理</h2>
+                <button class="btn-logout" onclick="logout()">ログアウト</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-diagnosis">0</div>
+                    <div class="stat-label">総診断数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="quadrant-a">0</div>
+                    <div class="stat-label">A象限（親族承継OK）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="quadrant-b">0</div>
+                    <div class="stat-label">B象限（準備不足）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="quadrant-c">0</div>
+                    <div class="stat-label">C象限（M&A推奨）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="quadrant-d">0</div>
+                    <div class="stat-label">D象限（要整理）</div>
+                </div>
+            </div>
+
+            <div class="admin-actions">
+                <button class="btn-export" onclick="exportCSV()">📊 CSVエクスポート</button>
+            </div>
+
+            <div class="data-table">
+                <table id="diagnosis-table">
+                    <thead>
+                        <tr>
+                            <th>診断日時</th>
+                            <th>診断結果</th>
+                            <th>後継者状況</th>
+                            <th>引退時期</th>
+                            <th>大事にしたいこと</th>
+                            <th>最大の不安</th>
+                            <th>詳細</th>
+                        </tr>
+                    </thead>
+                    <tbody id="diagnosis-tbody">
+                        <!-- JavaScriptで生成 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 承継・M&Aの決断参謀 矢野誠. All rights reserved.</p>
+        <p><a href="#" onclick="showAdminLogin()">管理者ログイン</a></p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
