@@ -313,6 +313,17 @@ body {
     border-color: var(--primary-color);
 }
 
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.required {
+    color: var(--danger-color);
+}
+
 .question-actions {
     display: flex;
     justify-content: space-between;

@@ -1,5 +1,5 @@
 // グローバル変数
-let currentQuestion = 1;
+let currentQuestion = 0;
 let diagnosisData = {};
 let allDiagnosisRecords = [];
 const ADMIN_USERNAME = 'yano';
@@ -74,7 +74,7 @@ function prevQuestion(current) {
 
 // プログレスバー更新
 function updateProgress() {
-    const progress = (currentQuestion / 7) * 100;
+    const progress = (currentQuestion / 8) * 100;
     document.getElementById('progress-fill').style.width = progress + '%';
     document.getElementById('current-question').textContent = currentQuestion;
 }
@@ -83,7 +83,36 @@ function updateProgress() {
 function validateQuestion(questionNum) {
     const questionCard = document.querySelector(`[data-question="${questionNum}"]`);
     
-    if (questionNum === 6) {
+    if (questionNum === 0) {
+        // 基本情報のバリデーション
+        const name = questionCard.querySelector('input[name="name"]');
+        const company = questionCard.querySelector('input[name="company"]');
+        const phone = questionCard.querySelector('input[name="phone"]');
+        const email = questionCard.querySelector('input[name="email"]');
+        
+        if (!name.value.trim()) {
+            alert('お名前を入力してください');
+            return false;
+        }
+        if (!company.value.trim()) {
+            alert('会社名を入力してください');
+            return false;
+        }
+        if (!phone.value.trim()) {
+            alert('電話番号を入力してください');
+            return false;
+        }
+        if (!email.value.trim()) {
+            alert('メールアドレスを入力してください');
+            return false;
+        }
+        // 簡易メールバリデーション
+        if (!email.value.includes('@')) {
+            alert('有効なメールアドレスを入力してください');
+            return false;
+        }
+        return true;
+    } else if (questionNum === 6) {
         // チェックボックスは少なくとも1つチェック
         const checkboxes = questionCard.querySelectorAll('input[type="checkbox"]');
         return Array.from(checkboxes).some(cb => cb.checked);
@@ -102,7 +131,13 @@ function validateQuestion(questionNum) {
 function saveAnswer(questionNum) {
     const questionCard = document.querySelector(`[data-question="${questionNum}"]`);
     
-    if (questionNum === 6) {
+    if (questionNum === 0) {
+        // 基本情報
+        diagnosisData.name = questionCard.querySelector('input[name="name"]').value;
+        diagnosisData.company = questionCard.querySelector('input[name="company"]').value;
+        diagnosisData.phone = questionCard.querySelector('input[name="phone"]').value;
+        diagnosisData.email = questionCard.querySelector('input[name="email"]').value;
+    } else if (questionNum === 6) {
         // チェックボックス（複数選択）
         const checkboxes = questionCard.querySelectorAll('input[name="q6"]:checked');
         diagnosisData[`q${questionNum}`] = Array.from(checkboxes).map(cb => cb.value);
@@ -327,6 +362,8 @@ function downloadReport() {
 決断診断レポート
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+【お名前】${diagnosisData.name} 様
+【会社名】${diagnosisData.company}
 【診断日】${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日
 【診断者】承継・M&Aの決断参謀 矢野誠
 
@@ -378,7 +415,7 @@ https://timerex.net/s/yanoconsulting2022_1f3b/ae0058a7
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `決断診断レポート_${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}.txt`;
+    a.download = `決断診断レポート_${diagnosisData.company}_${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}.txt`;
     a.click();
     URL.revokeObjectURL(url);
 }
@@ -477,11 +514,11 @@ function updateTable() {
         
         tr.innerHTML = `
             <td>${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</td>
+            <td>${record.name || '-'}</td>
+            <td>${record.company || '-'}</td>
+            <td>${record.phone || '-'}</td>
+            <td>${record.email || '-'}</td>
             <td>${record.result.quadrant}</td>
-            <td>${record.q2}</td>
-            <td>${record.q3}</td>
-            <td>${record.q4}</td>
-            <td>${record.q5}</td>
             <td><button class="btn-view" onclick="viewDetail(${allDiagnosisRecords.length - 1 - index})">詳細</button></td>
         `;
         tbody.appendChild(tr);
@@ -493,6 +530,10 @@ function viewDetail(index) {
     const record = allDiagnosisRecords[index];
     let detailText = `【診断詳細】\n\n`;
     detailText += `診断日時: ${new Date(record.timestamp).toLocaleString('ja-JP')}\n\n`;
+    detailText += `お名前: ${record.name || '-'}\n`;
+    detailText += `会社名: ${record.company || '-'}\n`;
+    detailText += `電話番号: ${record.phone || '-'}\n`;
+    detailText += `メール: ${record.email || '-'}\n\n`;
     detailText += `Q1: ${record.q1}\n`;
     detailText += `Q2: ${record.q2}\n`;
     detailText += `Q3: ${record.q3}\n`;
@@ -513,13 +554,17 @@ function exportCSV() {
         return;
     }
     
-    let csv = '診断日時,診断結果,後継者状況,引退時期,大事にしたいこと,最大の不安,相談相手,本音\n';
+    let csv = '診断日時,お名前,会社名,電話番号,メールアドレス,診断結果,後継者状況,引退時期,大事にしたいこと,最大の不安,相談相手,本音\n';
     
     allDiagnosisRecords.forEach(record => {
         const date = new Date(record.timestamp);
         const dateStr = `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
         
         csv += `"${dateStr}",`;
+        csv += `"${record.name || '-'}",`;
+        csv += `"${record.company || '-'}",`;
+        csv += `"${record.phone || '-'}",`;
+        csv += `"${record.email || '-'}",`;
         csv += `"${record.result.quadrant}",`;
         csv += `"${record.q2}",`;
         csv += `"${record.q3}",`;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>決断診断（20分・無料）｜承継・M&Aの決断参謀</title>
+    <title>決断診断（5分・無料）｜承継・M&Aの決断参謀</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
             <div class="hero">
                 <h1 class="headline">
                     「息子に継がせるか、M&Aで売るか」<br>
-                    <span class="highlight">その迷い、20分で終わらせます。</span>
+                    <span class="highlight">その迷い、5分で終わらせます。</span>
                 </h1>
                 <h2 class="subtitle">承継・M&Aの決断診断（無料）</h2>
                 <p class="description">
@@ -52,34 +52,27 @@
             </div>
 
             <div class="flow">
-                <h3>診断の流れ（所要時間：20分）</h3>
+                <h3>診断の流れ（所要時間：5分以内）</h3>
                 <div class="flow-steps">
                     <div class="flow-step">
                         <div class="step-number">STEP 1</div>
-                        <div class="step-time">0-3分</div>
-                        <div class="step-title">ヒアリング</div>
-                        <p>7つの質問で現状を確認</p>
+                        <div class="step-time">1分</div>
+                        <div class="step-title">基本情報入力</div>
+                        <p>氏名・会社名・連絡先</p>
                     </div>
                     <div class="flow-arrow">→</div>
                     <div class="flow-step">
                         <div class="step-number">STEP 2</div>
-                        <div class="step-time">3-10分</div>
+                        <div class="step-time">3分</div>
                         <div class="step-title">診断</div>
-                        <p>4象限マトリクスで分析</p>
+                        <p>7つの質問に回答</p>
                     </div>
                     <div class="flow-arrow">→</div>
                     <div class="flow-step">
                         <div class="step-number">STEP 3</div>
-                        <div class="step-time">10-18分</div>
-                        <div class="step-title">結果解説</div>
-                        <p>診断レポート提示</p>
-                    </div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step">
-                        <div class="step-number">STEP 4</div>
-                        <div class="step-time">18-20分</div>
-                        <div class="step-title">次のステップ</div>
-                        <p>個別相談のご案内</p>
+                        <div class="step-time">1分</div>
+                        <div class="step-title">結果表示</div>
+                        <p>即座にレポート提示</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +80,7 @@
             <div class="cta-section">
                 <button class="cta-button" onclick="startDiagnosis()">
                     今すぐ無料診断を始める<br>
-                    <span class="cta-sub">（所要時間：20分）</span>
+                    <span class="cta-sub">（所要時間：5分以内）</span>
                 </button>
                 <p class="cta-note">※診断後、無理な営業は一切ありません</p>
             </div>
@@ -100,11 +93,37 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
-            <p class="progress-text">質問 <span id="current-question">1</span> / 7</p>
+            <p class="progress-text">質問 <span id="current-question">0</span> / 8</p>
 
             <form id="diagnostic-form">
+                <!-- 基本情報入力 -->
+                <div class="question-card active" data-question="0">
+                    <h3 class="question-title">基本情報をご入力ください</h3>
+                    <div class="options">
+                        <div class="form-group">
+                            <label class="form-label">お名前 <span class="required">*</span></label>
+                            <input type="text" name="name" class="text-input" placeholder="山田 太郎" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">会社名 <span class="required">*</span></label>
+                            <input type="text" name="company" class="text-input" placeholder="株式会社〇〇" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">電話番号 <span class="required">*</span></label>
+                            <input type="tel" name="phone" class="text-input" placeholder="090-1234-5678" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">メールアドレス <span class="required">*</span></label>
+                            <input type="email" name="email" class="text-input" placeholder="example@company.com" required>
+                        </div>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-next" onclick="nextQuestion(0)">次へ</button>
+                    </div>
+                </div>
+
                 <!-- 質問1 -->
-                <div class="question-card active" data-question="1">
+                <div class="question-card" data-question="1">
                     <h3 class="question-title">今、一番悩んでいることは？</h3>
                     <div class="options">
                         <label class="option-label">
@@ -408,11 +427,11 @@
                     <thead>
                         <tr>
                             <th>診断日時</th>
+                            <th>お名前</th>
+                            <th>会社名</th>
+                            <th>電話番号</th>
+                            <th>メール</th>
                             <th>診断結果</th>
-                            <th>後継者状況</th>
-                            <th>引退時期</th>
-                            <th>大事にしたいこと</th>
-                            <th>最大の不安</th>
                             <th>詳細</th>
                         </tr>
                     </thead>
