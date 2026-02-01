@@ -3,15 +3,457 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yano Consulting - English</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; }
-        h1 { color: #2c3e50; }
-    </style>
+    <title>Decision Diagnosis (5 min • Free) | Succession & M&A Decision Advisor</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Welcome to Yano Consulting</h1>
-    <p>This is the English version of our website.</p>
-    <a href="index.html">Back to Japanese</a>
+    <div class="container">
+        <!-- Landing Page -->
+        <div id="landing-page" class="page active">
+            <div class="hero">
+                <h1 class="headline">
+                    "Should I pass the business to my son or sell via M&A?"<br>
+                    <span class="highlight">We'll end that dilemma in 5 minutes.</span>
+                </h1>
+                <h2 class="subtitle">Succession & M&A Decision Diagnosis (Free)</h2>
+                <p class="description">
+                    For CEOs with annual revenue over 500 million yen<br>
+                    who face "the solitary decision with no right answer,"<br>
+                    we organize your feelings and numbers,<br>
+                    and clarify your next step.
+                </p>
+            </div>
+
+            <div class="benefits">
+                <h3>What You'll Get</h3>
+                <div class="benefit-cards">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎯</div>
+                        <h4>Clear Next Step</h4>
+                        <p>Your current position visualized through the 4-quadrant matrix</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💡</div>
+                        <h4>Actionable Plan</h4>
+                        <p>Specific actions you can take within 1 month, 3 months, 1 year</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">⚠️</div>
+                        <h4>Risk Awareness</h4>
+                        <p>Identify risks to watch out for based on your situation</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📊</div>
+                        <h4>Diagnosis Report</h4>
+                        <p>Downloadable report for review anytime</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow">
+                <h3>Diagnosis Process (Total time: Within 5 minutes)</h3>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-number">STEP 1</div>
+                        <div class="step-time">1 min</div>
+                        <div class="step-title">Basic Information</div>
+                        <p>Name, Company, Contact</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="step-number">STEP 2</div>
+                        <div class="step-time">3 min</div>
+                        <div class="step-title">Diagnosis</div>
+                        <p>Answer 7 questions</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="step-number">STEP 3</div>
+                        <div class="step-time">1 min</div>
+                        <div class="step-title">Results</div>
+                        <p>Instant report delivery</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <button class="cta-button" onclick="startDiagnosis()">
+                    Start Free Diagnosis Now<br>
+                    <span class="cta-sub">(Time required: Within 5 minutes)</span>
+                </button>
+                <p class="cta-note">※No aggressive sales after diagnosis</p>
+            </div>
+
+            <div class="language-switch">
+                <a href="index.html" class="lang-link">🇯🇵 日本語</a>
+            </div>
+        </div>
+
+        <!-- Diagnostic Form -->
+        <div id="diagnosis-page" class="page">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p class="progress-text">Question <span id="current-question">0</span> / 8</p>
+
+            <form id="diagnostic-form">
+                <!-- Basic Information -->
+                <div class="question-card active" data-question="0">
+                    <h3 class="question-title">Please Enter Your Basic Information</h3>
+                    <div class="options">
+                        <div class="form-group">
+                            <label class="form-label">Full Name <span class="required">*</span></label>
+                            <input type="text" name="name" class="text-input" placeholder="John Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Company Name <span class="required">*</span></label>
+                            <input type="text" name="company" class="text-input" placeholder="ABC Corporation" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number <span class="required">*</span></label>
+                            <input type="tel" name="phone" class="text-input" placeholder="+1-234-567-8900" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address <span class="required">*</span></label>
+                            <input type="email" name="email" class="text-input" placeholder="john@company.com" required>
+                        </div>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-next" onclick="nextQuestion(0)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 1 -->
+                <div class="question-card" data-question="1">
+                    <h3 class="question-title">What is your biggest concern right now?</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="Can't decide between passing to my son or M&A" required>
+                            <span>Can't decide between passing to my son or M&A</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="Have a successor candidate but unsure if I can trust them">
+                            <span>Have a successor candidate but unsure if I can trust them</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="Considering M&A but can't find a good buyer">
+                            <span>Considering M&A but can't find a good buyer</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="Don't know where to start with succession planning">
+                            <span>Don't know where to start with succession planning</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="Other">
+                            <span>Other</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-prev" onclick="prevQuestion(1)">Back</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(1)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-card" data-question="2">
+                    <h3 class="question-title">Do you have a successor candidate?</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="Son/Daughter (willing to succeed)" required>
+                            <span>Son/Daughter (willing to succeed)</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="Son/Daughter (unknown willingness)">
+                            <span>Son/Daughter (unknown willingness)</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="Son/Daughter (unwilling)">
+                            <span>Son/Daughter (unwilling)</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="Internal candidate">
+                            <span>Internal candidate</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="None (considering M&A)">
+                            <span>None (considering M&A)</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-prev" onclick="prevQuestion(2)">Back</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(2)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-card" data-question="3">
+                    <h3 class="question-title">When is your ideal retirement timeframe?</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="Within 1 year" required>
+                            <span>Within 1 year</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="Within 3 years">
+                            <span>Within 3 years</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="Within 5 years">
+                            <span>Within 5 years</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="Within 10 years">
+                            <span>Within 10 years</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-prev" onclick="prevQuestion(3)">Back</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(3)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question-card" data-question="4">
+                    <h3 class="question-title">What matters most when preserving your company?</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="Protecting employee jobs" required>
+                            <span>Protecting employee jobs</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="Passing on my vision and values">
+                            <span>Passing on my vision and values</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="Selling at a high price to preserve assets">
+                            <span>Selling at a high price to preserve assets</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="Continuing contribution to the community">
+                            <span>Continuing contribution to the community</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-prev" onclick="prevQuestion(4)">Back</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(4)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question-card" data-question="5">
+                    <h3 class="question-title">What is your biggest concern?</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="Successor isn't ready" required>
+                            <span>Successor isn't ready</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="Don't know company valuation">
+                            <span>Don't know company valuation</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="Tax and inheritance issues">
+                            <span>Tax and inheritance issues</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="Don't understand M&A process">
+                            <span>Don't understand M&A process</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-prev" onclick="prevQuestion(5)">Back</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(5)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="question-card" data-question="6">
+                    <h3 class="question-title">Have you consulted anyone so far? (Multiple selections allowed)</h3>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="checkbox" name="q6" value="Tax accountant">
+                            <span>Tax accountant</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" name="q6" value="Lawyer">
+                            <span>Lawyer</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" name="q6" value="M&A intermediary">
+                            <span>M&A intermediary</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" name="q6" value="Family">
+                            <span>Family</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" name="q6" value="Haven't consulted anyone yet">
+                            <span>Haven't consulted anyone yet</span>
+                        </label>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-prev" onclick="prevQuestion(6)">Back</button>
+                        <button type="button" class="btn-next" onclick="nextQuestion(6)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="question-card" data-question="7">
+                    <h3 class="question-title">If you could decide today, what would you do?</h3>
+                    <div class="options">
+                        <textarea name="q7" class="text-input" rows="5" placeholder="Please share your honest feelings..." required></textarea>
+                    </div>
+                    <div class="question-actions">
+                        <button type="button" class="btn-prev" onclick="prevQuestion(7)">Back</button>
+                        <button type="button" class="btn-submit" onclick="submitDiagnosis()">View Results</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Result Page -->
+        <div id="result-page" class="page">
+            <h2 class="result-title">Decision Diagnosis Report</h2>
+            
+            <div class="result-section">
+                <h3>Your Current Position</h3>
+                <div class="matrix-container">
+                    <div class="matrix">
+                        <div class="matrix-label matrix-label-top">Successor Readiness</div>
+                        <div class="matrix-label matrix-label-left">Vision<br>Strength</div>
+                        
+                        <div class="matrix-quadrant" data-quadrant="A">
+                            <div class="quadrant-label">Quadrant A</div>
+                            <div class="quadrant-desc">Family<br>Succession<br>(Ready)</div>
+                        </div>
+                        <div class="matrix-quadrant" data-quadrant="B">
+                            <div class="quadrant-label">Quadrant B</div>
+                            <div class="quadrant-desc">Family<br>Succession<br>(Needs Prep)</div>
+                        </div>
+                        <div class="matrix-quadrant" data-quadrant="C">
+                            <div class="quadrant-label">Quadrant C</div>
+                            <div class="quadrant-desc">M&A<br>(Weak Vision)</div>
+                        </div>
+                        <div class="matrix-quadrant" data-quadrant="D">
+                            <div class="quadrant-label">Quadrant D</div>
+                            <div class="quadrant-desc">Needs<br>Clarification</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Diagnosis Result:</span>
+                        <span class="summary-value" id="result-quadrant"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Best Option:</span>
+                        <span class="summary-value" id="result-option"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Feasibility:</span>
+                        <span class="summary-value" id="result-feasibility"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h3>Your Next Steps (What you can do now)</h3>
+                <div class="action-list" id="action-list"></div>
+            </div>
+
+            <div class="result-section">
+                <h3>Risks to Watch</h3>
+                <div class="risk-list" id="risk-list"></div>
+            </div>
+
+            <div class="result-actions">
+                <button class="btn-download" onclick="downloadReport()">📥 Download Report</button>
+                <a href="https://timerex.net/s/yanoconsulting2022_1f3b/ae0058a7" target="_blank" class="btn-cta">
+                    Book Free Consultation (60 min)
+                </a>
+            </div>
+
+            <div class="language-switch">
+                <a href="index.html" class="lang-link">🇯🇵 日本語</a>
+            </div>
+        </div>
+
+        <!-- Admin Login -->
+        <div id="admin-login-page" class="page">
+            <div class="admin-login-form">
+                <h2>Administrator Login</h2>
+                <input type="text" id="admin-username" class="text-input" placeholder="Username">
+                <input type="password" id="admin-password" class="text-input" placeholder="Password">
+                <button class="cta-button" onclick="login()">Login</button>
+                <button class="btn-back" onclick="showPage('landing-page')">Back to Top</button>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="admin-dashboard" class="page">
+            <div class="admin-header">
+                <h2>Admin Dashboard</h2>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-label">Total Diagnoses</div>
+                    <div class="stat-value" id="total-diagnoses">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Quadrant A</div>
+                    <div class="stat-value" id="quadrant-a-count">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Quadrant B</div>
+                    <div class="stat-value" id="quadrant-b-count">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Quadrant C</div>
+                    <div class="stat-value" id="quadrant-c-count">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Quadrant D</div>
+                    <div class="stat-value" id="quadrant-d-count">0</div>
+                </div>
+            </div>
+
+            <div class="admin-actions">
+                <button class="btn-export" onclick="exportCSV()">📥 Export CSV</button>
+            </div>
+
+            <div class="data-table-container">
+                <h3>Diagnosis Data List</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Result</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-table-body"></tbody>
+                </table>
+            </div>
+
+            <div class="language-switch">
+                <a href="index.html" class="lang-link">🇯🇵 日本語</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Succession & M&A Decision Advisor Makoto Yano. All Rights Reserved.</p>
+            <p><a href="#" onclick="showPage('admin-login-page'); return false;">Administrator Login</a></p>
+        </footer>
+    </div>
+
+    <script src="js/app-en.js"></script>
 </body>
 </html>
