@@ -1,0 +1,460 @@
+  1	<!DOCTYPE html>
+     2	<html lang="en">
+     3	<head>
+     4	    <meta charset="UTF-8">
+     5	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6	    <title>Decision Diagnosis (5 min • Free) | Succession & M&A Decision Advisor</title>
+     7	    <link rel="stylesheet" href="css/style.css">
+     8	</head>
+     9	<body>
+    10	    <div class="container">
+    11	        <!-- Landing Page -->
+    12	        <div id="landing-page" class="page active">
+    13	            <div class="hero">
+    14	                <h1 class="headline">
+    15	                    "Should I pass the business to my son or sell via M&A?"<br>
+    16	                    <span class="highlight">We'll end that dilemma in 5 minutes.</span>
+    17	                </h1>
+    18	                <h2 class="subtitle">Succession & M&A Decision Diagnosis (Free)</h2>
+    19	                <p class="description">
+    20	                    For CEOs with annual revenue over 500 million yen<br>
+    21	                    who face "the solitary decision with no right answer,"<br>
+    22	                    we organize your feelings and numbers,<br>
+    23	                    and clarify your next step.
+    24	                </p>
+    25	            </div>
+    26	
+    27	            <div class="benefits">
+    28	                <h3>What You'll Get</h3>
+    29	                <div class="benefit-cards">
+    30	                    <div class="benefit-card">
+    31	                        <div class="benefit-icon">🎯</div>
+    32	                        <h4>Clear Next Step</h4>
+    33	                        <p>Your current position visualized through the 4-quadrant matrix</p>
+    34	                    </div>
+    35	                    <div class="benefit-card">
+    36	                        <div class="benefit-icon">💡</div>
+    37	                        <h4>Actionable Plan</h4>
+    38	                        <p>Specific actions you can take within 1 month, 3 months, 1 year</p>
+    39	                    </div>
+    40	                    <div class="benefit-card">
+    41	                        <div class="benefit-icon">⚠️</div>
+    42	                        <h4>Risk Awareness</h4>
+    43	                        <p>Identify risks to watch out for based on your situation</p>
+    44	                    </div>
+    45	                    <div class="benefit-card">
+    46	                        <div class="benefit-icon">📊</div>
+    47	                        <h4>Diagnosis Report</h4>
+    48	                        <p>Downloadable report for review anytime</p>
+    49	                    </div>
+    50	                </div>
+    51	            </div>
+    52	
+    53	            <div class="flow">
+    54	                <h3>Diagnosis Process (Total time: Within 5 minutes)</h3>
+    55	                <div class="flow-steps">
+    56	                    <div class="flow-step">
+    57	                        <div class="step-number">STEP 1</div>
+    58	                        <div class="step-time">1 min</div>
+    59	                        <div class="step-title">Basic Information</div>
+    60	                        <p>Name, Company, Contact</p>
+    61	                    </div>
+    62	                    <div class="flow-arrow">→</div>
+    63	                    <div class="flow-step">
+    64	                        <div class="step-number">STEP 2</div>
+    65	                        <div class="step-time">3 min</div>
+    66	                        <div class="step-title">Diagnosis</div>
+    67	                        <p>Answer 7 questions</p>
+    68	                    </div>
+    69	                    <div class="flow-arrow">→</div>
+    70	                    <div class="flow-step">
+    71	                        <div class="step-number">STEP 3</div>
+    72	                        <div class="step-time">1 min</div>
+    73	                        <div class="step-title">Results</div>
+    74	                        <p>Instant report delivery</p>
+    75	                    </div>
+    76	                </div>
+    77	            </div>
+    78	
+    79	            <div class="cta-section">
+    80	                <button class="cta-button" onclick="startDiagnosis()">
+    81	                    Start Free Diagnosis Now<br>
+    82	                    <span class="cta-sub">(Time required: Within 5 minutes)</span>
+    83	                </button>
+    84	                <p class="cta-note">※No aggressive sales after diagnosis</p>
+    85	            </div>
+    86	
+    87	            <div class="language-switch">
+    88	                <a href="index.html" class="lang-link">🇯🇵 日本語</a>
+    89	            </div>
+    90	        </div>
+    91	
+    92	        <!-- Diagnostic Form -->
+    93	        <div id="diagnosis-page" class="page">
+    94	            <div class="progress-bar">
+    95	                <div class="progress-fill" id="progress-fill"></div>
+    96	            </div>
+    97	            <p class="progress-text">Question <span id="current-question">0</span> / 8</p>
+    98	
+    99	            <form id="diagnostic-form">
+   100	                <!-- Basic Information -->
+   101	                <div class="question-card active" data-question="0">
+   102	                    <h3 class="question-title">Please Enter Your Basic Information</h3>
+   103	                    <div class="options">
+   104	                        <div class="form-group">
+   105	                            <label class="form-label">Full Name <span class="required">*</span></label>
+   106	                            <input type="text" name="name" class="text-input" placeholder="John Smith" required>
+   107	                        </div>
+   108	                        <div class="form-group">
+   109	                            <label class="form-label">Company Name <span class="required">*</span></label>
+   110	                            <input type="text" name="company" class="text-input" placeholder="ABC Corporation" required>
+   111	                        </div>
+   112	                        <div class="form-group">
+   113	                            <label class="form-label">Phone Number <span class="required">*</span></label>
+   114	                            <input type="tel" name="phone" class="text-input" placeholder="+1-234-567-8900" required>
+   115	                        </div>
+   116	                        <div class="form-group">
+   117	                            <label class="form-label">Email Address <span class="required">*</span></label>
+   118	                            <input type="email" name="email" class="text-input" placeholder="john@company.com" required>
+   119	                        </div>
+   120	                    </div>
+   121	                    <div class="question-actions">
+   122	                        <button type="button" class="btn-next" onclick="nextQuestion(0)">Next</button>
+   123	                    </div>
+   124	                </div>
+   125	
+   126	                <!-- Question 1 -->
+   127	                <div class="question-card" data-question="1">
+   128	                    <h3 class="question-title">What is your biggest concern right now?</h3>
+   129	                    <div class="options">
+   130	                        <label class="option-label">
+   131	                            <input type="radio" name="q1" value="Can't decide between passing to my son or M&A" required>
+   132	                            <span>Can't decide between passing to my son or M&A</span>
+   133	                        </label>
+   134	                        <label class="option-label">
+   135	                            <input type="radio" name="q1" value="Have a successor candidate but unsure if I can trust them">
+   136	                            <span>Have a successor candidate but unsure if I can trust them</span>
+   137	                        </label>
+   138	                        <label class="option-label">
+   139	                            <input type="radio" name="q1" value="Considering M&A but can't find a good buyer">
+   140	                            <span>Considering M&A but can't find a good buyer</span>
+   141	                        </label>
+   142	                        <label class="option-label">
+   143	                            <input type="radio" name="q1" value="Don't know where to start with succession planning">
+   144	                            <span>Don't know where to start with succession planning</span>
+   145	                        </label>
+   146	                        <label class="option-label">
+   147	                            <input type="radio" name="q1" value="Other">
+   148	                            <span>Other</span>
+   149	                        </label>
+   150	                    </div>
+   151	                    <div class="question-actions">
+   152	                        <button type="button" class="btn-prev" onclick="prevQuestion(1)">Back</button>
+   153	                        <button type="button" class="btn-next" onclick="nextQuestion(1)">Next</button>
+   154	                    </div>
+   155	                </div>
+   156	
+   157	                <!-- Question 2 -->
+   158	                <div class="question-card" data-question="2">
+   159	                    <h3 class="question-title">Do you have a successor candidate?</h3>
+   160	                    <div class="options">
+   161	                        <label class="option-label">
+   162	                            <input type="radio" name="q2" value="Son/Daughter (willing to succeed)" required>
+   163	                            <span>Son/Daughter (willing to succeed)</span>
+   164	                        </label>
+   165	                        <label class="option-label">
+   166	                            <input type="radio" name="q2" value="Son/Daughter (unknown willingness)">
+   167	                            <span>Son/Daughter (unknown willingness)</span>
+   168	                        </label>
+   169	                        <label class="option-label">
+   170	                            <input type="radio" name="q2" value="Son/Daughter (unwilling)">
+   171	                            <span>Son/Daughter (unwilling)</span>
+   172	                        </label>
+   173	                        <label class="option-label">
+   174	                            <input type="radio" name="q2" value="Internal candidate">
+   175	                            <span>Internal candidate</span>
+   176	                        </label>
+   177	                        <label class="option-label">
+   178	                            <input type="radio" name="q2" value="None (considering M&A)">
+   179	                            <span>None (considering M&A)</span>
+   180	                        </label>
+   181	                    </div>
+   182	                    <div class="question-actions">
+   183	                        <button type="button" class="btn-prev" onclick="prevQuestion(2)">Back</button>
+   184	                        <button type="button" class="btn-next" onclick="nextQuestion(2)">Next</button>
+   185	                    </div>
+   186	                </div>
+   187	
+   188	                <!-- Question 3 -->
+   189	                <div class="question-card" data-question="3">
+   190	                    <h3 class="question-title">When is your ideal retirement timeframe?</h3>
+   191	                    <div class="options">
+   192	                        <label class="option-label">
+   193	                            <input type="radio" name="q3" value="Within 1 year" required>
+   194	                            <span>Within 1 year</span>
+   195	                        </label>
+   196	                        <label class="option-label">
+   197	                            <input type="radio" name="q3" value="Within 3 years">
+   198	                            <span>Within 3 years</span>
+   199	                        </label>
+   200	                        <label class="option-label">
+   201	                            <input type="radio" name="q3" value="Within 5 years">
+   202	                            <span>Within 5 years</span>
+   203	                        </label>
+   204	                        <label class="option-label">
+   205	                            <input type="radio" name="q3" value="Within 10 years">
+   206	                            <span>Within 10 years</span>
+   207	                        </label>
+   208	                    </div>
+   209	                    <div class="question-actions">
+   210	                        <button type="button" class="btn-prev" onclick="prevQuestion(3)">Back</button>
+   211	                        <button type="button" class="btn-next" onclick="nextQuestion(3)">Next</button>
+   212	                    </div>
+   213	                </div>
+   214	
+   215	                <!-- Question 4 -->
+   216	                <div class="question-card" data-question="4">
+   217	                    <h3 class="question-title">What matters most when preserving your company?</h3>
+   218	                    <div class="options">
+   219	                        <label class="option-label">
+   220	                            <input type="radio" name="q4" value="Protecting employee jobs" required>
+   221	                            <span>Protecting employee jobs</span>
+   222	                        </label>
+   223	                        <label class="option-label">
+   224	                            <input type="radio" name="q4" value="Passing on my vision and values">
+   225	                            <span>Passing on my vision and values</span>
+   226	                        </label>
+   227	                        <label class="option-label">
+   228	                            <input type="radio" name="q4" value="Selling at a high price to preserve assets">
+   229	                            <span>Selling at a high price to preserve assets</span>
+   230	                        </label>
+   231	                        <label class="option-label">
+   232	                            <input type="radio" name="q4" value="Continuing contribution to the community">
+   233	                            <span>Continuing contribution to the community</span>
+   234	                        </label>
+   235	                    </div>
+   236	                    <div class="question-actions">
+   237	                        <button type="button" class="btn-prev" onclick="prevQuestion(4)">Back</button>
+   238	                        <button type="button" class="btn-next" onclick="nextQuestion(4)">Next</button>
+   239	                    </div>
+   240	                </div>
+   241	
+   242	                <!-- Question 5 -->
+   243	                <div class="question-card" data-question="5">
+   244	                    <h3 class="question-title">What is your biggest concern?</h3>
+   245	                    <div class="options">
+   246	                        <label class="option-label">
+   247	                            <input type="radio" name="q5" value="Successor isn't ready" required>
+   248	                            <span>Successor isn't ready</span>
+   249	                        </label>
+   250	                        <label class="option-label">
+   251	                            <input type="radio" name="q5" value="Don't know company valuation">
+   252	                            <span>Don't know company valuation</span>
+   253	                        </label>
+   254	                        <label class="option-label">
+   255	                            <input type="radio" name="q5" value="Tax and inheritance issues">
+   256	                            <span>Tax and inheritance issues</span>
+   257	                        </label>
+   258	                        <label class="option-label">
+   259	                            <input type="radio" name="q5" value="Don't understand M&A process">
+   260	                            <span>Don't understand M&A process</span>
+   261	                        </label>
+   262	                    </div>
+   263	                    <div class="question-actions">
+   264	                        <button type="button" class="btn-prev" onclick="prevQuestion(5)">Back</button>
+   265	                        <button type="button" class="btn-next" onclick="nextQuestion(5)">Next</button>
+   266	                    </div>
+   267	                </div>
+   268	
+   269	                <!-- Question 6 -->
+   270	                <div class="question-card" data-question="6">
+   271	                    <h3 class="question-title">Have you consulted anyone so far? (Multiple selections allowed)</h3>
+   272	                    <div class="options">
+   273	                        <label class="option-label">
+   274	                            <input type="checkbox" name="q6" value="Tax accountant">
+   275	                            <span>Tax accountant</span>
+   276	                        </label>
+   277	                        <label class="option-label">
+   278	                            <input type="checkbox" name="q6" value="Lawyer">
+   279	                            <span>Lawyer</span>
+   280	                        </label>
+   281	                        <label class="option-label">
+   282	                            <input type="checkbox" name="q6" value="M&A intermediary">
+   283	                            <span>M&A intermediary</span>
+   284	                        </label>
+   285	                        <label class="option-label">
+   286	                            <input type="checkbox" name="q6" value="Family">
+   287	                            <span>Family</span>
+   288	                        </label>
+   289	                        <label class="option-label">
+   290	                            <input type="checkbox" name="q6" value="Haven't consulted anyone yet">
+   291	                            <span>Haven't consulted anyone yet</span>
+   292	                        </label>
+   293	                    </div>
+   294	                    <div class="question-actions">
+   295	                        <button type="button" class="btn-prev" onclick="prevQuestion(6)">Back</button>
+   296	                        <button type="button" class="btn-next" onclick="nextQuestion(6)">Next</button>
+   297	                    </div>
+   298	                </div>
+   299	
+   300	                <!-- Question 7 -->
+   301	                <div class="question-card" data-question="7">
+   302	                    <h3 class="question-title">If you could decide today, what would you do?</h3>
+   303	                    <div class="options">
+   304	                        <textarea name="q7" class="text-input" rows="5" placeholder="Please share your honest feelings..." required></textarea>
+   305	                    </div>
+   306	                    <div class="question-actions">
+   307	                        <button type="button" class="btn-prev" onclick="prevQuestion(7)">Back</button>
+   308	                        <button type="button" class="btn-submit" onclick="submitDiagnosis()">View Results</button>
+   309	                    </div>
+   310	                </div>
+   311	            </form>
+   312	        </div>
+   313	
+   314	        <!-- Result Page -->
+   315	        <div id="result-page" class="page">
+   316	            <h2 class="result-title">Decision Diagnosis Report</h2>
+   317	            
+   318	            <div class="result-section">
+   319	                <h3>Your Current Position</h3>
+   320	                <div class="matrix-container">
+   321	                    <div class="matrix">
+   322	                        <div class="matrix-label matrix-label-top">Successor Readiness</div>
+   323	                        <div class="matrix-label matrix-label-left">Vision<br>Strength</div>
+   324	                        
+   325	                        <div class="matrix-quadrant" data-quadrant="A">
+   326	                            <div class="quadrant-label">Quadrant A</div>
+   327	                            <div class="quadrant-desc">Family<br>Succession<br>(Ready)</div>
+   328	                        </div>
+   329	                        <div class="matrix-quadrant" data-quadrant="B">
+   330	                            <div class="quadrant-label">Quadrant B</div>
+   331	                            <div class="quadrant-desc">Family<br>Succession<br>(Needs Prep)</div>
+   332	                        </div>
+   333	                        <div class="matrix-quadrant" data-quadrant="C">
+   334	                            <div class="quadrant-label">Quadrant C</div>
+   335	                            <div class="quadrant-desc">M&A<br>(Weak Vision)</div>
+   336	                        </div>
+   337	                        <div class="matrix-quadrant" data-quadrant="D">
+   338	                            <div class="quadrant-label">Quadrant D</div>
+   339	                            <div class="quadrant-desc">Needs<br>Clarification</div>
+   340	                        </div>
+   341	                    </div>
+   342	                </div>
+   343	
+   344	                <div class="result-summary">
+   345	                    <div class="summary-item">
+   346	                        <span class="summary-label">Diagnosis Result:</span>
+   347	                        <span class="summary-value" id="result-quadrant"></span>
+   348	                    </div>
+   349	                    <div class="summary-item">
+   350	                        <span class="summary-label">Best Option:</span>
+   351	                        <span class="summary-value" id="result-option"></span>
+   352	                    </div>
+   353	                    <div class="summary-item">
+   354	                        <span class="summary-label">Feasibility:</span>
+   355	                        <span class="summary-value" id="result-feasibility"></span>
+   356	                    </div>
+   357	                </div>
+   358	            </div>
+   359	
+   360	            <div class="result-section">
+   361	                <h3>Your Next Steps (What you can do now)</h3>
+   362	                <div class="action-list" id="action-list"></div>
+   363	            </div>
+   364	
+   365	            <div class="result-section">
+   366	                <h3>Risks to Watch</h3>
+   367	                <div class="risk-list" id="risk-list"></div>
+   368	            </div>
+   369	
+   370	            <div class="result-actions">
+   371	                <button class="btn-download" onclick="downloadReport()">📥 Download Report</button>
+   372	                <a href="https://timerex.net/s/yanoconsulting2022_1f3b/ae0058a7" target="_blank" class="btn-cta">
+   373	                    Book Free Consultation (60 min)
+   374	                </a>
+   375	            </div>
+   376	
+   377	            <div class="language-switch">
+   378	                <a href="index.html" class="lang-link">🇯🇵 日本語</a>
+   379	            </div>
+   380	        </div>
+   381	
+   382	        <!-- Admin Login -->
+   383	        <div id="admin-login-page" class="page">
+   384	            <div class="admin-login-form">
+   385	                <h2>Administrator Login</h2>
+   386	                <input type="text" id="admin-username" class="text-input" placeholder="Username">
+   387	                <input type="password" id="admin-password" class="text-input" placeholder="Password">
+   388	                <button class="cta-button" onclick="login()">Login</button>
+   389	                <button class="btn-back" onclick="showPage('landing-page')">Back to Top</button>
+   390	            </div>
+   391	        </div>
+   392	
+   393	        <!-- Admin Dashboard -->
+   394	        <div id="admin-dashboard" class="page">
+   395	            <div class="admin-header">
+   396	                <h2>Admin Dashboard</h2>
+   397	                <button class="btn-logout" onclick="logout()">Logout</button>
+   398	            </div>
+   399	
+   400	            <div class="stats-container">
+   401	                <div class="stat-card">
+   402	                    <div class="stat-label">Total Diagnoses</div>
+   403	                    <div class="stat-value" id="total-diagnoses">0</div>
+   404	                </div>
+   405	                <div class="stat-card">
+   406	                    <div class="stat-label">Quadrant A</div>
+   407	                    <div class="stat-value" id="quadrant-a-count">0</div>
+   408	                </div>
+   409	                <div class="stat-card">
+   410	                    <div class="stat-label">Quadrant B</div>
+   411	                    <div class="stat-value" id="quadrant-b-count">0</div>
+   412	                </div>
+   413	                <div class="stat-card">
+   414	                    <div class="stat-label">Quadrant C</div>
+   415	                    <div class="stat-value" id="quadrant-c-count">0</div>
+   416	                </div>
+   417	                <div class="stat-card">
+   418	                    <div class="stat-label">Quadrant D</div>
+   419	                    <div class="stat-value" id="quadrant-d-count">0</div>
+   420	                </div>
+   421	            </div>
+   422	
+   423	            <div class="admin-actions">
+   424	                <button class="btn-export" onclick="exportCSV()">📥 Export CSV</button>
+   425	            </div>
+   426	
+   427	            <div class="data-table-container">
+   428	                <h3>Diagnosis Data List</h3>
+   429	                <table class="data-table">
+   430	                    <thead>
+   431	                        <tr>
+   432	                            <th>Date & Time</th>
+   433	                            <th>Name</th>
+   434	                            <th>Company</th>
+   435	                            <th>Phone</th>
+   436	                            <th>Email</th>
+   437	                            <th>Result</th>
+   438	                            <th>Details</th>
+   439	                        </tr>
+   440	                    </thead>
+   441	                    <tbody id="data-table-body"></tbody>
+   442	                </table>
+   443	            </div>
+   444	
+   445	            <div class="language-switch">
+   446	                <a href="index.html" class="lang-link">🇯🇵 日本語</a>
+   447	            </div>
+   448	        </div>
+   449	
+   450	        <!-- Footer -->
+   451	        <footer>
+   452	            <p>&copy; 2025 Succession & M&A Decision Advisor Makoto Yano. All Rights Reserved.</p>
+   453	            <p><a href="#" onclick="showPage('admin-login-page'); return false;">Administrator Login</a></p>
+   454	        </footer>
+   455	    </div>
+   456	
+   457	    <script src="js/app-en.js"></script>
+   458	</body>
+   459	</html>
+   460	
