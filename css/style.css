@@ -355,6 +355,14 @@ body {
     flex-shrink: 0;
 }
 
+.advisor-photo-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .advisor-photo-placeholder {
     width: 120px;
     height: 120px;
@@ -394,6 +402,57 @@ body {
     color: #666;
     line-height: 1.7;
 }
+
+/* 連絡先フォーム（診断後） */
+.contact-form-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.contact-form-card h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.contact-intro {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+
+.btn-submit-contact {
+    width: 100%;
+    padding: 18px;
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit-contact:hover {
+    background: #d44d2d;
+    transform: translateY(-2px);
+}
+
+.contact-note {
+    text-align: center;
+    margin-top: 20px;
+    color: #999;
+    font-size: 0.9rem;
+}
+
 
 .question-actions {
     display: flex;

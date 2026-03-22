@@ -32,6 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function startDiagnosis() {
     document.getElementById('landing-page').classList.add('hidden');
     document.getElementById('diagnosis-form').classList.remove('hidden');
+    
+    // 最初の診断質問（基本情報をスキップ）
+    currentQuestion = 1;
+    document.querySelector('[data-question="0"]').classList.remove('active');
+    document.querySelector('[data-question="1"]').classList.add('active');
+    updateProgress();
+    
     window.scrollTo(0, 0);
 }
 
@@ -181,11 +188,52 @@ function submitDiagnosis() {
     const result = calculateDiagnosis(diagnosisData);
     diagnosisData.result = result;
     
+
+// 連絡先情報入力フォームを表示
+function showContactForm() {
+    document.getElementById("diagnosis-form").classList.add("hidden");
+    document.getElementById("contact-form-section").classList.remove("hidden");
+    window.scrollTo(0, 0);
+}
+
+// 連絡先情報を保存して結果表示
+function submitContactInfo() {
+    const name = document.getElementById("contact-name").value;
+    const company = document.getElementById("contact-company").value;
+    const phone = document.getElementById("contact-phone").value;
+    const email = document.getElementById("contact-email").value;
+    
+    if (!name.trim()) {
+        alert("お名前を入力してください");
+        return;
+    }
+    if (!company.trim()) {
+        alert("会社名を入力してください");
+        return;
+    }
+    if (!email.trim()) {
+        alert("メールアドレスを入力してください");
+        return;
+    }
+    if (!email.includes("@")) {
+        alert("有効なメールアドレスを入力してください");
+        return;
+    }
+    
+    // 連絡先情報を保存
+    diagnosisData.name = name;
+    diagnosisData.company = company;
+    diagnosisData.phone = phone || "未入力";
+    diagnosisData.email = email;
+    
     // ローカルストレージに保存
     saveDiagnosisRecord(diagnosisData);
     
-    // 結果画面を表示
-    showResult(result);
+    // 結果表示
+    showResult(diagnosisData.result);
+}
+    // 連絡先情報入力画面を表示
+    showContactForm();
 }
 
 // 診断結果を計算（4象限マトリクス）
@@ -287,7 +335,7 @@ function calculateDiagnosis(data) {
 
 // 診断結果を表示
 function showResult(result) {
-    document.getElementById('diagnosis-form').classList.add('hidden');
+    document.getElementById('contact-form-section').classList.add('hidden');
     document.getElementById('diagnosis-result').classList.remove('hidden');
     
     // 診断日
