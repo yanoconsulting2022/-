@@ -188,6 +188,9 @@ function submitDiagnosis() {
     const result = calculateDiagnosis(diagnosisData);
     diagnosisData.result = result;
     
+    // 連絡先情報入力画面を表示
+    showContactForm();
+}
 
 // 連絡先情報入力フォームを表示
 function showContactForm() {
@@ -231,9 +234,6 @@ function submitContactInfo() {
     
     // 結果表示
     showResult(diagnosisData.result);
-}
-    // 連絡先情報入力画面を表示
-    showContactForm();
 }
 
 // 診断結果を計算（4象限マトリクス）
