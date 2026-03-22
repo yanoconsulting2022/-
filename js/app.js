@@ -4,6 +4,7 @@ let diagnosisData = {};
 let allDiagnosisRecords = [];
 const ADMIN_USERNAME = 'yano';
 const ADMIN_PASSWORD = 'makoto2025';
+const TOTAL_QUESTIONS = 7; // 診断質問の総数（基本情報を除く）
 
 // ページ読み込み時
 document.addEventListener('DOMContentLoaded', function() {
@@ -40,7 +41,6 @@ function nextQuestion(current) {
     
     // バリデーション
     if (!validateQuestion(current)) {
-        alert('この質問に回答してください');
         return;
     }
     
@@ -74,9 +74,16 @@ function prevQuestion(current) {
 
 // プログレスバー更新
 function updateProgress() {
-    const progress = (currentQuestion / 8) * 100;
-    document.getElementById('progress-fill').style.width = progress + '%';
-    document.getElementById('current-question').textContent = currentQuestion;
+    const progressLabel = document.getElementById('progress-label');
+    
+    if (currentQuestion === 0) {
+        progressLabel.textContent = '基本情報入力';
+        document.getElementById('progress-fill').style.width = '0%';
+    } else {
+        progressLabel.textContent = `質問 ${currentQuestion} / ${TOTAL_QUESTIONS}`;
+        const progress = (currentQuestion / TOTAL_QUESTIONS) * 100;
+        document.getElementById('progress-fill').style.width = progress + '%';
+    }
 }
 
 // 質問のバリデーション
@@ -87,7 +94,6 @@ function validateQuestion(questionNum) {
         // 基本情報のバリデーション
         const name = questionCard.querySelector('input[name="name"]');
         const company = questionCard.querySelector('input[name="company"]');
-        const phone = questionCard.querySelector('input[name="phone"]');
         const email = questionCard.querySelector('input[name="email"]');
         
         if (!name.value.trim()) {
@@ -96,10 +102,6 @@ function validateQuestion(questionNum) {
         }
         if (!company.value.trim()) {
             alert('会社名を入力してください');
-            return false;
-        }
-        if (!phone.value.trim()) {
-            alert('電話番号を入力してください');
             return false;
         }
         if (!email.value.trim()) {
@@ -115,15 +117,24 @@ function validateQuestion(questionNum) {
     } else if (questionNum === 6) {
         // チェックボックスは少なくとも1つチェック
         const checkboxes = questionCard.querySelectorAll('input[type="checkbox"]');
-        return Array.from(checkboxes).some(cb => cb.checked);
+        const isChecked = Array.from(checkboxes).some(cb => cb.checked);
+        if (!isChecked) {
+            alert('少なくとも1つ選択してください');
+            return false;
+        }
+        return true;
     } else if (questionNum === 7) {
-        // テキストエリア
-        const textarea = questionCard.querySelector('textarea');
-        return textarea.value.trim() !== '';
+        // Q7は任意なのでバリデーションなし
+        return true;
     } else {
         // ラジオボタン
         const radios = questionCard.querySelectorAll('input[type="radio"]');
-        return Array.from(radios).some(radio => radio.checked);
+        const isChecked = Array.from(radios).some(radio => radio.checked);
+        if (!isChecked) {
+            alert('いずれか1つ選択してください');
+            return false;
+        }
+        return true;
     }
 }
 
@@ -135,16 +146,16 @@ function saveAnswer(questionNum) {
         // 基本情報
         diagnosisData.name = questionCard.querySelector('input[name="name"]').value;
         diagnosisData.company = questionCard.querySelector('input[name="company"]').value;
-        diagnosisData.phone = questionCard.querySelector('input[name="phone"]').value;
+        diagnosisData.phone = questionCard.querySelector('input[name="phone"]').value || '未入力';
         diagnosisData.email = questionCard.querySelector('input[name="email"]').value;
     } else if (questionNum === 6) {
         // チェックボックス（複数選択）
         const checkboxes = questionCard.querySelectorAll('input[name="q6"]:checked');
         diagnosisData[`q${questionNum}`] = Array.from(checkboxes).map(cb => cb.value);
     } else if (questionNum === 7) {
-        // テキストエリア
+        // テキストエリア（任意）
         const textarea = questionCard.querySelector('textarea[name="q7"]');
-        diagnosisData[`q${questionNum}`] = textarea.value;
+        diagnosisData[`q${questionNum}`] = textarea.value.trim() || '未入力';
     } else {
         // ラジオボタン
         const radio = questionCard.querySelector(`input[name="q${questionNum}"]:checked`);
@@ -352,9 +363,114 @@ function drawMatrix(quadrant) {
     `;
 }
 
-// 診断レポートをダウンロード
+// 診断レポートをPDFでダウンロード
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+    });
+    
+    const result = diagnosisData.result;
+    const now = new Date();
+    const dateStr = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`;
+    
+    // 日本語フォントの設定（簡易版 - 実際には日本語フォントが必要）
+    doc.setFont('helvetica');
+    
+    let y = 20;
+    
+    // タイトル
+    doc.setFontSize(18);
+    doc.text('Decision Diagnosis Report', 105, y, { align: 'center' });
+    y += 10;
+    doc.setFontSize(16);
+    doc.text('Ketsudanshindan Report', 105, y, { align: 'center' });
+    y += 15;
+    
+    // 基本情報
+    doc.setFontSize(12);
+    doc.text(`Name: ${diagnosisData.name}`, 20, y);
+    y += 8;
+    doc.text(`Company: ${diagnosisData.company}`, 20, y);
+    y += 8;
+    doc.text(`Date: ${dateStr}`, 20, y);
+    y += 8;
+    doc.text('Advisor: Makoto Yano (Shoukei & M&A Ketsudan Sanbou)', 20, y);
+    y += 15;
+    
+    // セクション：現在地
+    doc.setFontSize(14);
+    doc.text('Your Current Position', 20, y);
+    y += 10;
+    
+    doc.setFontSize(11);
+    doc.text(`Result: ${result.quadrant}`, 25, y);
+    y += 7;
+    doc.text(`Recommendation: ${result.choice}`, 25, y);
+    y += 7;
+    doc.text(`Feasibility: ${result.feasibility}`, 25, y);
+    y += 15;
+    
+    // セクション：次の一手
+    doc.setFontSize(14);
+    doc.text('Next Actions', 20, y);
+    y += 10;
+    
+    doc.setFontSize(11);
+    result.actions.forEach((action, index) => {
+        const text = `${index + 1}. ${action.text} (${action.timeline})`;
+        const lines = doc.splitTextToSize(text, 170);
+        lines.forEach(line => {
+            if (y > 270) {
+                doc.addPage();
+                y = 20;
+            }
+            doc.text(line, 25, y);
+            y += 7;
+        });
+    });
+    y += 8;
+    
+    // セクション：リスク
+    doc.setFontSize(14);
+    doc.text('Risks to Consider', 20, y);
+    y += 10;
+    
+    doc.setFontSize(11);
+    result.risks.forEach((risk, index) => {
+        const text = `! ${risk}`;
+        const lines = doc.splitTextToSize(text, 170);
+        lines.forEach(line => {
+            if (y > 270) {
+                doc.addPage();
+                y = 20;
+            }
+            doc.text(line, 25, y);
+            y += 7;
+        });
+    });
+    
+    // フッター
+    if (y > 250) {
+        doc.addPage();
+        y = 20;
+    }
+    y += 15;
+    doc.setFontSize(12);
+    doc.text('For further consultation (60 min, free initial session):', 20, y);
+    y += 8;
+    doc.setFontSize(10);
+    doc.text('https://timerex.net/s/yanoconsulting2022_1f3b/ae0058a7', 20, y);
+    
+    // 保存
+    const filename = `Ketsudanshindan_Report_${diagnosisData.company.replace(/[^a-zA-Z0-9]/g, '_')}_${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}.pdf`;
+    doc.save(filename);
+}
+
+// テキストダウンロード（バックアップ用）
 function downloadReport() {
-    // PDFではなくテキストファイルとしてダウンロード
     const result = diagnosisData.result;
     const now = new Date();
     

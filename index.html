@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>決断診断（5分・無料）｜承継・M&Aの決断参謀</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <!-- ランディングページ -->
@@ -77,6 +78,20 @@
                 </div>
             </div>
 
+            <div class="advisor-profile">
+                <div class="advisor-content">
+                    <div class="advisor-photo">
+                        <div class="advisor-photo-placeholder">矢野誠</div>
+                    </div>
+                    <div class="advisor-info">
+                        <h4>診断者プロフィール</h4>
+                        <p class="advisor-name">矢野誠（やの まこと）</p>
+                        <p class="advisor-credential">中小企業診断士 / 承継・M&Aの決断参謀</p>
+                        <p class="advisor-description">年商5億円以上の企業の事業承継・M&A支援に特化。経営者の「想いと数字」を整理し、後悔しない決断をサポートします。</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="cta-section">
                 <button class="cta-button" onclick="startDiagnosis()">
                     今すぐ無料診断を始める<br>
@@ -93,7 +108,7 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
-            <p class="progress-text">質問 <span id="current-question">0</span> / 8</p>
+            <p class="progress-text"><span id="progress-label">基本情報入力</span></p>
 
             <form id="diagnostic-form">
                 <!-- 基本情報入力 -->
@@ -109,8 +124,8 @@
                             <input type="text" name="company" class="text-input" placeholder="株式会社〇〇" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">電話番号 <span class="required">*</span></label>
-                            <input type="tel" name="phone" class="text-input" placeholder="090-1234-5678" required>
+                            <label class="form-label">電話番号 <span class="optional">（任意）</span></label>
+                            <input type="tel" name="phone" class="text-input" placeholder="090-1234-5678">
                         </div>
                         <div class="form-group">
                             <label class="form-label">メールアドレス <span class="required">*</span></label>
@@ -297,9 +312,9 @@
 
                 <!-- 質問7 -->
                 <div class="question-card" data-question="7">
-                    <h3 class="question-title">もし今日、決断できるなら、どうしたいですか？</h3>
+                    <h3 class="question-title">もし今日、決断できるなら、どうしたいですか？ <span class="optional-label">（任意）</span></h3>
                     <div class="options">
-                        <textarea name="q7" class="text-input" rows="4" placeholder="自由にお書きください" required></textarea>
+                        <textarea name="q7" class="text-input" rows="4" placeholder="例：息子に継いでほしいが、本人の気持ちが確認できていない"></textarea>
                     </div>
                     <div class="question-actions">
                         <button type="button" class="btn-back" onclick="prevQuestion(7)">戻る</button>
@@ -362,7 +377,7 @@
                     無料ヒアリングを予約する
                 </a>
                 <p class="cta-note">※診断レポートをPDFでダウンロードできます</p>
-                <button class="btn-download" onclick="downloadReport()">📥 診断レポートをダウンロード</button>
+                <button class="btn-download" onclick="downloadPDF()">📥 診断レポート（PDF）をダウンロード</button>
             </div>
         </div>
     </section>

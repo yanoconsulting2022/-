@@ -324,6 +324,77 @@ body {
     color: var(--danger-color);
 }
 
+.optional {
+    color: #999;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.optional-label {
+    color: #999;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+/* 診断者プロフィール */
+.advisor-profile {
+    margin: 60px 0;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.advisor-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.advisor-photo {
+    flex-shrink: 0;
+}
+
+.advisor-photo-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), #2563a8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.advisor-info h4 {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.advisor-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.advisor-credential {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.advisor-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.7;
+}
+
 .question-actions {
     display: flex;
     justify-content: space-between;
@@ -821,5 +892,16 @@ footer a:hover {
     .admin-header {
         flex-direction: column;
         gap: 15px;
+    }
+
+    .advisor-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .advisor-photo-placeholder {
+        width: 100px;
+        height: 100px;
+        font-size: 1rem;
     }
 }
