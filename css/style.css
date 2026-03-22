@@ -734,6 +734,50 @@ body {
     color: white;
 }
 
+.btn-print {
+    margin-top: 10px;
+    padding: 15px 30px;
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid white;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-print:hover {
+    background: transparent;
+    color: white;
+}
+
+/* 印刷用スタイル */
+@media print {
+    /* 印刷時に不要な要素を非表示 */
+    .cta-card,
+    footer,
+    .btn-download,
+    .btn-print,
+    nav,
+    header {
+        display: none !important;
+    }
+    
+    /* 印刷時の背景色を保持 */
+    .result-card {
+        break-inside: avoid;
+    }
+    
+    /* 印刷時のレイアウト調整 */
+    body {
+        background: white;
+    }
+    
+    .container {
+        max-width: 100%;
+    }
+}
+
 /* 管理者ログイン */
 .login-card {
     max-width: 400px;

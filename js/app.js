@@ -518,7 +518,8 @@ function downloadPDF() {
 }
 
 // テキストダウンロード（バックアップ用）
-function downloadReport() {
+// テキストレポートをダウンロード
+function downloadTxtReport() {
     const result = diagnosisData.result;
     const now = new Date();
     
@@ -528,8 +529,11 @@ function downloadReport() {
 
 【お名前】${diagnosisData.name} 様
 【会社名】${diagnosisData.company}
+【電話番号】${diagnosisData.phone}
+【メールアドレス】${diagnosisData.email}
 【診断日】${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日
 【診断者】承継・M&Aの決断参謀 矢野誠
+【資格】中小企業診断士
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 あなたの現在地
@@ -562,6 +566,31 @@ function downloadReport() {
     
     reportText += `
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+あなたの診断回答
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Q1. 今、一番悩んでいることは？
+→ ${diagnosisData.q1}
+
+Q2. 後継者候補はいますか？
+→ ${diagnosisData.q2}
+
+Q3. 理想の引退時期は？
+→ ${diagnosisData.q3}
+
+Q4. 会社を残す上で、一番大事にしたいことは？
+→ ${diagnosisData.q4}
+
+Q5. 今、一番の不安は？
+→ ${diagnosisData.q5}
+
+Q6. これまでに誰かに相談しましたか？
+→ ${Array.isArray(diagnosisData.q6) ? diagnosisData.q6.join('、') : diagnosisData.q6}
+
+Q7. もし今日、決断できるなら、どうしたいですか？
+→ ${diagnosisData.q7}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 さらに深掘りしたい方へ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -572,10 +601,14 @@ function downloadReport() {
 https://timerex.net/s/yanoconsulting2022_1f3b/ae0058a7
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+承継・M&Aの決断参謀
+矢野誠（中小企業診断士）
 `;
     
-    // ダウンロード
-    const blob = new Blob([reportText], { type: 'text/plain;charset=utf-8' });
+    // BOM付きUTF-8でダウンロード（文字化け防止）
+    const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+    const blob = new Blob([bom, reportText], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;

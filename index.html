@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>決断診断（5分・無料）｜承継・M&Aの決断参謀</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.31/dist/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
     <!-- ランディングページ -->
@@ -410,8 +408,9 @@
                 <a href="https://timerex.net/s/yanoconsulting2022_1f3b/ae0058a7" target="_blank" class="cta-button-secondary">
                     無料ヒアリングを予約する
                 </a>
-                <p class="cta-note">※診断レポートをPDFでダウンロードできます</p>
-                <button class="btn-download" onclick="downloadPDF()">📥 診断レポート（PDF）をダウンロード</button>
+                <p class="cta-note">※診断レポートをダウンロード・印刷できます</p>
+                <button class="btn-download" onclick="downloadTxtReport()">📥 診断レポート（テキスト）をダウンロード</button>
+                <button class="btn-print" onclick="window.print()">🖨️ この画面を印刷する</button>
             </div>
         </div>
     </section>
@@ -498,6 +497,5 @@
     </footer>
 
     <script src="js/app.js"></script>
-    <script src="pdf-generator.js"></script>
 </body>
 </html>
